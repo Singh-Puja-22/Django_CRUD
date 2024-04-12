@@ -8,10 +8,17 @@
 </head>
 <body> -->
 {% block title %}
-    Index
+    Customer
 {% endblock %}
 {% block content %}
-    <h1>This is the Home page of this CRUD project</h1>
+    <h1>List of Customers</h1>
+    <ul>
+        {% for c in customer_list %} 
+        <li>
+            {{ c.fullname }}
+        </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
 <!-- </body>
 </html> -->

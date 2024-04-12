@@ -3,7 +3,7 @@ from django.template import loader
 from django.shortcuts import render
 from django.views import View
 
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView, UpdateView
 
 from .models import Customer 
 
@@ -25,5 +25,13 @@ class Regitration(CreateView):
     model = Customer
     fields = [ 'fullname', 'age','gender', 'email', 'number', 'address', 'state', 'city', 'pincode', 'image']
     success_url= '/'
-    # template_name = 'registration.html'
+
+class CustomerList(ListView):
+    queryset = Customer.objects.all()
+    template_name = 'customer.html'
+
+class UpdateCustomer(UpdateView):
+    model = Customer
+    fields = [ 'fullname', 'age','gender', 'email', 'number', 'address', 'state', 'city', 'pincode', 'image']
+    success_url= 'customer'
     
