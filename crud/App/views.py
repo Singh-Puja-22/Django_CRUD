@@ -1,9 +1,12 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import View
+from rest_framework.decorators import api_view
+from django.utils.decorators import method_decorator
 
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from .models import Customer 
 
@@ -20,12 +23,18 @@ class App(View):
     
 # def app(request):
 #     return HttpResponse("Hello")
-
+# @api_view(['POST'])
 class Regitration(CreateView):
     model = Customer
     fields = [ 'fullname', 'age','gender', 'email', 'number', 'address', 'state', 'city', 'pincode', 'image']
     success_url= '/'
 
+class CustomerDetail(DetailView):
+    queryset = Customer.objects.all()
+    template_name = 'customer_detail.html'
+
+# @api_view(['GET'])
+# @method_decorator(Customer)
 class CustomerList(ListView):
     queryset = Customer.objects.all()
     template_name = 'customer.html'
@@ -33,5 +42,12 @@ class CustomerList(ListView):
 class UpdateCustomer(UpdateView):
     model = Customer
     fields = [ 'fullname', 'age','gender', 'email', 'number', 'address', 'state', 'city', 'pincode', 'image']
-    success_url= 'customer'
+    success_url = '/customer'
+    # success_url= '/customerdetail/customer.pk'
+    # success_url=reverse_lazy("App:customerdetail")
+
+class DeleteCustomer(DeleteView):
+    model = Customer
+    template_name = 'customer_delete.html'
+    success_url = '/customer'
     

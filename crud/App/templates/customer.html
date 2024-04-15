@@ -13,9 +13,16 @@
 {% block content %}
     <h1>List of Customers</h1>
     <ul>
-        {% for c in customer_list %} 
+        {% for c in customer_list %}
         <li>
-            {{ c.fullname }}
+            <a href="{% url 'customerdetail' c.pk %}">{{ c.fullname }}</a>
+            
+            
+            <img src="{{ c.image }}" width="200px" height="200px" />
+            <!-- <br> -->
+            <!-- <button type="button" class="btn btn-primary">Edit</button> -->
+            
+            <br>
         </li>
         {% endfor %}
     </ul>
