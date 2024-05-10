@@ -3,8 +3,7 @@ from django.template import loader
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
-from rest_framework.decorators import api_view
-from django.utils.decorators import method_decorator
+
 
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
@@ -20,10 +19,7 @@ class App(View):
     }
     def get(self, request):
         return HttpResponse(self.template.render(self.context, request))
-    
-# def app(request):
-#     return HttpResponse("Hello")
-# @api_view(['POST'])
+
 class Regitration(CreateView):
     model = Customer
     fields = [ 'fullname', 'age','gender', 'email', 'number', 'address', 'state', 'city', 'pincode', 'image']
@@ -33,8 +29,6 @@ class CustomerDetail(DetailView):
     queryset = Customer.objects.all()
     template_name = 'customer_detail.html'
 
-# @api_view(['GET'])
-# @method_decorator(Customer)
 class CustomerList(ListView):
     queryset = Customer.objects.all()
     template_name = 'customer.html'

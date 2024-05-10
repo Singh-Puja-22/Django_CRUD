@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ customer.id }}
-{{ customer.fullname }}
-<img src="{{ customer.image.url }}" width="200px" height="200px" />
-{{ customer.number }}
 
-{{ customer.email }}
+  <section class="home" id="home">
+    <div>
+    <center>
+        <img src="{{ customer.image.url }}" width="300px" height="300px" />
+        <br/>
+        <a href="{% url 'editcustomer' customer.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'deletecustomer' customer.pk %}" class="btn btn-danger">Delete</a>
+    </center>
+    </div>
 
-<a href="{% url 'editcustomer' customer.pk %}" class="btn btn-primary">Edit</a>
-<a href="{% url 'deletecustomer' customer.pk %}" class="btn btn-danger">Delete</a>
+    <div class="content">
+        <p>ID: {{ customer.id }}</p>
+        <p>Full Name: {{ customer.fullname }}</p>
+        <p>Age: {{ customer.age }}</p>
+        <p>Gender: {{ customer.gender }}</p>
+        <p>E-mail: {{ customer.email }}</p>
+        <p>Phone Number: {{ customer.number }}</p>
+        <p>Address: {{ customer.address }}, {{ customer.city }}, {{ customer.state }} {{ customer.pincode }}</p>
+        <p>State: {{ customer.state }}</p>
+    </div>
+</section>
 {% endblock %}

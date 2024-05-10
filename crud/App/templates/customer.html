@@ -1,31 +1,24 @@
 {% extends 'base.html' %}
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-</head>
-<body> -->
+
 {% block title %}
     Customer
 {% endblock %}
+
 {% block content %}
-    <h1>List of Customers</h1>
-    <ul>
+    <h1 style="text-align:center;">List of Customers</h1>
+    <br/>   
+    <div class="row">
         {% for c in customer_list %}
-        <li>
-            <a href="{% url 'customerdetail' c.pk %}">{{ c.fullname }}</a>
-            
-            
-            <img src="{{ c.image }}" width="200px" height="200px" />
-            <!-- <br> -->
-            <!-- <button type="button" class="btn btn-primary">Edit</button> -->
-            
-            <br>
-        </li>
+            <div class="col-sm-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ c.pk }}. {{ c.fullname }}</h5>
+                  <img src="{{ c.image }}" width="200px" height="200px" />
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="{% url 'customerdetail' c.pk %}" class="btn btn-primary">Details</a>
+                </div>
+              </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
-<!-- </body>
-</html> -->

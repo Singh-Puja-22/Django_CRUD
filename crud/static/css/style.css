@@ -1,0 +1,23 @@
+.home {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+  flex-direction: row;
+}
+
+.content {
+  padding: 3rem;
+}
+
+.btn:hover {
+  background: rgb(102, 102, 102);
+}
+
+.footer {
+  text-align: center;
+  padding-bottom: 8rem;
+  min-height: 30vh;
+  max-height: 30vh;
+}
